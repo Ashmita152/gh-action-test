@@ -10,7 +10,7 @@ jobs:
     steps:
     - run: docker version
     - run: docker pull alpine
-    - run: printenv ${QUAY_TOKEN} | docker login quay.io --username ${QUAY_USERNAME} --password-stdin
+    - run: docker login quay.io --username ${QUAY_USERNAME} --password ${QUAY_TOKEN}
       env:
         QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
         QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
