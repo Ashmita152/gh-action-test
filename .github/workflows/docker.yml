@@ -11,6 +11,9 @@ jobs:
     - run: docker version
     - run: docker pull alpine
     - run: printenv ${QUAY_TOKEN} | docker login quay.io --username ${QUAY_USERNAME} --password-stdin
+      env:
+        QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
     - run: docker tag alpine quay.io/ashmita1/alpine:1
     - run: docker tag alpine quay.io/ashmita1/alpine:2
     - run: docker tag alpine quay.io/ashmita1/alpine:3
