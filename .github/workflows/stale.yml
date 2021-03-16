@@ -1,0 +1,41 @@
+name: Close stale issues and pull requests
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  issues:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/stale@v3
+        with:
+          days-before-stale: 1
+          days-before-close: 1
+          only-labels: 'question'
+          exempt-issue-labels: ' '
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has not had
+            recent activity. It will be closed if no further activity occurs.
+          close-issue-message: 'This issue has been automatically closed due to inactivity.'
+
+  pulls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/stale@v3
+        with:
+          days-before-pr-stale: 60
+          days-before-pr-close: 14
+          only-labels: ' '
+          exempt-issue-labels: ' '
+          stale-pr-message: >
+            This pull request has been automatically marked as stale because it has not had
+            recent activity. It will be closed if no further activity occurs. You may re-open
+            it if you need more time.
+          close-pr-message: >
+            This pull request has been automatically closed due to inactivity. You may re-open
+            it if you need more time. We really appreciate your contribution and we are sorry
+            that this has not been completed.
+
+
+
